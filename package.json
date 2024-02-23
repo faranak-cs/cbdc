@@ -1,0 +1,19 @@
+{
+  "name": "cbdc",
+  "version": "1.0.0",
+  "description": "![usecase](https://github.com/faranak-cs/cbdc/assets/73027299/cfc27d22-b1f3-498d-836f-436db2fc0277)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+    "hardhat": "^2.20.1"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5"
+  }
+}
