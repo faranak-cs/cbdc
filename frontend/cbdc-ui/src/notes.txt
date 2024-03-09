@@ -1,7 +1,7 @@
 import { ethers, Contract } from "ethers";
 import OurToken from "./artifacts/contracts/OurToken.sol/OurToken.json";
 
-const connectBlockchain = async () => {
+const connectBlockchain = () => {
   new Promise((resolve, reject) => {
     window.addEventListener("load", async () => {
       if (window.ethereum) {

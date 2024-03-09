@@ -1,11 +1,33 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import connectBlockchain from "./ethereum";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [ourToken, setOurToken] = useState(undefined);
 
+  useEffect(() => {
+    const init = async () => {
+      const { ourToken } = await connectBlockchain();
+      setOurToken(ourToken);
+    };
+    init();
+  }, []);
+
+  if (typeof window.ethereum === "undefined") {
+    return (
+      <div className="container">
+        <div className="col-sm-12">
+          <h1>CBDC Token System</h1>
+          <p>Install MetaMask</p>
+        </div>
+      </div>
+    );
+  }
   return (
-    <div>
-      <h2>CBDC Token System</h2>
+    <div className="container">
+      <div className="col-sm-12">
+        <h1>CBDC Token System</h1>
+        {/* render another component */}
+      </div>
     </div>
   );
 }
