@@ -6,7 +6,7 @@ module.exports = {
     sources: "./contracts",
     tests: "./test",
     cache: "./cache",
-    artifacts: "./frontend/cbdc-ui/src/artifacts",
+    artifacts: "./frontend/src/artifacts",
   },
   defaultNetwork: "hardhat",
   networks: {
