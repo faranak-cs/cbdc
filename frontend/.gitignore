@@ -22,7 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-/src/notes.txt
+/src/notes.jsx
 
 # Hardhat files
 /src/artifacts

@@ -9,9 +9,12 @@ const connectBlockchain = async () => {
         await window.ethereum.request({
           method: "eth_requestAccounts",
         });
+
+        // connect ethers
         const provider = new ethers.BrowserProvider(window.ethereum);
         const signer = provider.getSigner();
 
+        // access contract functions
         const ourToken = new Contract(
           OurToken.networks[
             window.ethereum.request({ method: "net_version" })

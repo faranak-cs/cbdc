@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import connectBlockchain from "./ethereum";
 
 import { BrowserRouter, Switch, Route } from "react-router-dom";
@@ -12,6 +12,7 @@ import Redeem from "./Redeem";
 import Withdraw from "./Withdraw";
 
 function App() {
+  const [accounts, setAccounts] = useState([]);
   // const [ourToken, setOurToken] = useState(undefined);
 
   // useEffect(() => {
