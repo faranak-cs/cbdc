@@ -12,6 +12,7 @@ async function getPermitSignature(signer, token, spender, value, deadline) {
   return ethers.Signature.from(
     await signer.signTypedData(
       {
+        // EIP712DOMAIN
         name,
         version,
         chainId,
