@@ -12,6 +12,7 @@ async function getPermitSignature(signer, token, spender, value, deadline) {
   return ethers.Signature.from(
     await signer.signTypedData(
       {
+        // EIP712DOMAIN
         name,
         version,
         chainId,
@@ -83,6 +84,8 @@ describe("ERC20Permit", function () {
     );
 
     await vault.depositWithPermit(amount, deadline, v, r, s);
+
+    console.log("Amount of tokens: ", await ourToken.balanceOf(vault.target));
 
     // test cases
     expect(await ourToken.balanceOf(vault.target)).to.equal(amount);
