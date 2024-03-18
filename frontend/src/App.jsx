@@ -1,5 +1,4 @@
 import { useState } from "react";
-import connectBlockchain from "./ethereum";
 
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
@@ -13,24 +12,7 @@ import Withdraw from "./Withdraw";
 
 function App() {
   const [accounts, setAccounts] = useState([]);
-  // const [ourToken, setOurToken] = useState(undefined);
 
-  // useEffect(() => {
-  //   const init = async () => {
-  //     const { ourToken } = await connectBlockchain();
-  //     setOurToken(ourToken);
-  //   };
-  //   init();
-  // }, []);
-
-  // if (typeof window.ethereum === "undefined") {
-  //   return (
-  //     <div>
-  //       <h1>CBDC Token System</h1>
-  //       <p>Install MetaMask</p>
-  //     </div>
-  //   );
-  // }
   return (
     <div className="App">
       <BrowserRouter>
