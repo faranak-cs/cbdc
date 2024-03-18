@@ -6,7 +6,6 @@ describe("VerifySignature", function () {
   it("Check signature", async function () {
     // get an account from ethers.js library
     const account = await ethers.getSigners();
-
     // get the contract abi using ethers.js library
     const VerifySignature = await ethers.getContractFactory("VerifySignature");
     // deploy contract on hardhat local ethereum network
@@ -19,6 +18,7 @@ describe("VerifySignature", function () {
 
     // parameters
     const to = account[0].address;
+
     const amount = 999;
     const message = "Hello";
     const nonce = 123;
@@ -33,8 +33,11 @@ describe("VerifySignature", function () {
     const ethHash = await contract.getEthSignedMessageHash(hash);
 
     // output
-    console.log("P.K OF CENTRAL BANK=", signer.address);
-    console.log("RECOVERED P.K=", await contract.recoverSigner(ethHash, sig));
+    console.log("Original Public Key of Central Bank: ", signer.address);
+    console.log(
+      "Recovered Public Key of Central Bank: ",
+      await contract.recoverSigner(ethHash, sig)
+    );
 
     // test cases
     expect(
