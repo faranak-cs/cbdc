@@ -1,6 +1,7 @@
 import { ethers, Contract } from "ethers";
 import Vault from "./artifacts/contracts/Vault.sol/Vault.json";
-import { useState, useRef } from "react";
+import OurToken from "./artifacts/contracts/OurToken.sol/OurToken.json";
+import { useState } from "react";
 
 function Mint() {
   const [msg, setMsg] = useState("");
@@ -9,29 +10,48 @@ function Mint() {
   const [amount, setAmount] = useState(0);
 
   const handleMint = async () => {
-    // connect ethers ✅
-    const provider = new ethers.BrowserProvider(window.ethereum);
-    const signer = await provider.getSigner();
+    if (typeof window.ethereum !== "undefined") {
+      // connect ethers ✅
+      const provider = new ethers.BrowserProvider(window.ethereum);
+      const signer = await provider.getSigner();
 
-    // contract address ✅
-    // contract ABI ✅
-    // signer ✅
-    const vaultAddress = "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512";
-    const vault = new ethers.Contract(vaultAddress, Vault.abi, signer);
+      // vault
+      // contract address ✅
+      // contract ABI ✅
+      // signer ✅
+      const vaultAddress = "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512";
+      const vault = new ethers.Contract(vaultAddress, Vault.abi, signer);
 
-    // set values to verify signature ✅
-    const deadline = ethers.MaxUint256;
-    const { v, r, s } = ethers.Signature.from(sig);
+      // token
+      // contract address ✅
+      // contract ABI ✅
+      // signer ✅
+      const tokenAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
+      const token = new ethers.Contract(tokenAddress, OurToken.abi, signer);
 
-    try {
-      // function ✅
-      await vault.depositWithPermit(spender, amount, deadline, v, r, s);
+      // set values to verify signature ✅
+      const deadline = ethers.MaxUint256;
+      const { v, r, s } = ethers.Signature.from(sig);
+      const owner = "0x8626f6940E2eb28930eFb4CeF49B2d1F2C9C1199";
 
-      // set message
-      setMsg("Tokens are minted successfully!");
-    } catch (error) {
-      console.log(error);
-      setMsg("Minting unsuccessful!");
+      try {
+        // function ✅
+        // await vault.depositWithPermit(spender, amount, deadline, v, r, s);
+
+        // verify and permit ✅
+        await token.permit(owner, spender, amount, deadline, v, r, s);
+
+        // transfer ✅
+        await token.transferFrom(owner, spender, amount);
+
+        // set message
+        setMsg("Tokens are minted successfully!");
+      } catch (error) {
+        console.log(error);
+        setMsg("Minting unsuccessful!");
+      }
+    } else {
+      setMsg("Install MetaMask first!");
     }
   };
 

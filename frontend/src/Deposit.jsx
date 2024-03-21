@@ -26,6 +26,9 @@ function Deposit() {
       const deadline = ethers.MaxUint256;
 
       try {
+        // mint tokens to owner address ✅
+        await token.mint(signer.address, value);
+
         // generate signature to access tokens ✅
         const sig = await signer.signTypedData(
           {
@@ -67,9 +70,6 @@ function Deposit() {
           }
         );
 
-        // mint tokens to owner address
-        await token.mint(signer.address, value);
-
         // set signature
         setSig(sig);
 
@@ -80,7 +80,7 @@ function Deposit() {
         setMsg("Deposit unsuccessful!");
       }
     } else {
-      setMsg("Install MetaMask!");
+      setMsg("Install MetaMask first!");
     }
   };
 
