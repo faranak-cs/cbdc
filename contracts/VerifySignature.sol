@@ -2,6 +2,7 @@
 pragma solidity ^0.8.24;
 
 contract VerifySignature {
+    // message hash
     function getMessageHash(
         address _to,
         uint _amount,
@@ -11,6 +12,7 @@ contract VerifySignature {
         return keccak256(abi.encodePacked(_to, _amount, _message, _nonce));
     }
 
+    // Ethereum message hash
     function getEthSignedMessageHash(
         bytes32 _messageHash
     ) public pure returns (bytes32) {
@@ -23,6 +25,7 @@ contract VerifySignature {
             );
     }
 
+    // verify signature
     function verify(
         address _signer,
         address _to,
@@ -37,6 +40,7 @@ contract VerifySignature {
         return recoverSigner(ethSignedMessageHash, signature) == _signer;
     }
 
+    // get original signer
     function recoverSigner(
         bytes32 _ethSignedMessageHash,
         bytes memory _signature
@@ -46,6 +50,7 @@ contract VerifySignature {
         return ecrecover(_ethSignedMessageHash, v, r, s);
     }
 
+    // take out [r, s, v] values from signature
     function splitSignature(
         bytes memory sig
     ) public pure returns (bytes32 r, bytes32 s, uint8 v) {

@@ -1,39 +1,37 @@
 import { ethers, Contract } from "ethers";
-import OurToken from "./artifacts/contracts/OurToken.sol/OurToken.json";
+import Vault from "./artifacts/contracts/Vault.sol/Vault.json";
 import { useState, useRef } from "react";
 
 function Mint() {
-  const [mint, setMint] = useState("Mint");
-  const [result, setResult] = useState("");
-  const [account, setAccount] = useState("");
+  const [msg, setMsg] = useState("");
+  const [sig, setSig] = useState("");
+  const [spender, setSpender] = useState("");
   const [amount, setAmount] = useState(0);
 
   const handleMint = async () => {
-    if (typeof window.ethereum !== "undefined") {
-      // connect ethers ✅
-      const provider = new ethers.BrowserProvider(window.ethereum);
-      const signer = await provider.getSigner();
+    // connect ethers ✅
+    const provider = new ethers.BrowserProvider(window.ethereum);
+    const signer = await provider.getSigner();
 
-      // contract address ✅
-      const contractAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
-      // contract ABI (blueprint) ✅
-      // signer ✅
-      const ourToken = new ethers.Contract(
-        contractAddress,
-        OurToken.abi,
-        signer
-      );
-      console.log(ourToken);
-      try {
-        // function ✅
-        await ourToken.mint(account, amount);
-        setResult("Tokens are minted successfully!");
-      } catch (error) {
-        console.log(error);
-        setResult("Minting unsuccessful!");
-      }
-    } else {
-      setMint("Install MetaMask!");
+    // contract address ✅
+    // contract ABI ✅
+    // signer ✅
+    const vaultAddress = "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512";
+    const vault = new ethers.Contract(vaultAddress, Vault.abi, signer);
+
+    // set values to verify signature ✅
+    const deadline = ethers.MaxUint256;
+    const { v, r, s } = ethers.Signature.from(sig);
+
+    try {
+      // function ✅
+      await vault.depositWithPermit(spender, amount, deadline, v, r, s);
+
+      // set message
+      setMsg("Tokens are minted successfully!");
+    } catch (error) {
+      console.log(error);
+      setMsg("Minting unsuccessful!");
     }
   };
 
@@ -49,6 +47,9 @@ function Mint() {
           name="signature"
           id="signature"
           className="form-control"
+          onChange={(e) => {
+            setSig(e.target.value);
+          }}
         />
       </div>
       <div className="form-group">
@@ -60,21 +61,21 @@ function Mint() {
           name="wallet_address"
           id="wallet_address"
           className="form-control"
-          onChange={(e) => {
-            setAccount(e.target.value);
+          onKeyUp={(e) => {
+            setSpender(e.target.value);
           }}
         />
       </div>
       <div className="form-group">
         <label htmlFor="mint_token" className="form-label">
-          Enter the amount of tokens:
+          Enter the amount:
         </label>
         <input
           type="number"
           name="mint_token"
           id="mint_token"
           className="form-control"
-          onChange={(e) => {
+          onKeyUp={(e) => {
             setAmount(e.target.value);
           }}
         />
@@ -82,10 +83,10 @@ function Mint() {
 
       <br />
       <button className="btn btn-primary" onClick={handleMint}>
-        {mint}
+        Mint
       </button>
       <hr />
-      <label className="form-label">{result}</label>
+      <label className="form-label">{msg}</label>
     </div>
   );
 }

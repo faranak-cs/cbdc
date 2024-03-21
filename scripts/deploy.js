@@ -3,11 +3,19 @@ const { ethers } = require("hardhat");
 
 // async main function
 async function main() {
-  const VerifySignature = await ethers.getContractFactory("VerifySignature");
-  console.log("Deploying smart contract...");
-  const verifySignature = await VerifySignature.deploy();
-  await verifySignature.waitForDeployment();
-  console.log(`Deployed to: ${verifySignature.target}`);
+  // OurToken.sol
+  const OurToken = await ethers.getContractFactory("OurToken");
+  console.log("Deploying OurToken.sol ...");
+  const ourToken = await OurToken.deploy();
+  await ourToken.waitForDeployment();
+  console.log(`Deployed to: ${ourToken.target}`);
+
+  // Vault.sol
+  const Vault = await ethers.getContractFactory("Vault");
+  console.log("Deploying Vault.sol ...");
+  const vault = await Vault.deploy(ourToken.target);
+  await vault.waitForDeployment();
+  console.log(`Deployed to: ${vault.target}`);
 }
 
 // call main

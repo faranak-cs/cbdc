@@ -3,7 +3,7 @@ import { useState } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 import Nav from "./Nav";
-import MainMenu from "./MainMenu";
+import Home from "./Home";
 import Deposit from "./Deposit";
 import Mint from "./Mint";
 import Transfer from "./Transfer";
@@ -19,7 +19,7 @@ function App() {
         <div className="App">
           <Nav />
           <Switch>
-            <Route path="/" exact component={MainMenu} />
+            <Route path="/" exact component={Home} />
             <Route path="/deposit" component={Deposit} />
             <Route path="/mint" component={Mint} />
             <Route path="/transfer" component={Transfer} />

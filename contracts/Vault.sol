@@ -17,13 +17,14 @@ contract Vault {
 
     // transfer funds by using digital signature
     function depositWithPermit(
+        address spender,
         uint amount,
         uint deadline,
         uint8 v,
         bytes32 r,
         bytes32 s
     ) external {
-        token.permit(msg.sender, address(this), amount, deadline, v, r, s);
-        token.transferFrom(msg.sender, address(this), amount);
+        token.permit(msg.sender, spender, amount, deadline, v, r, s);
+        token.transferFrom(msg.sender, spender, amount);
     }
 }
