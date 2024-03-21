@@ -60,8 +60,6 @@ describe("ERC20Permit", function () {
   it("ERC20 permit", async function () {
     const accounts = await ethers.getSigners(1);
     const signer = accounts[0];
-    console.log(signer);
-    console.log(signer.address);
 
     const OurToken = await ethers.getContractFactory("OurToken");
     const ourToken = await OurToken.deploy();
