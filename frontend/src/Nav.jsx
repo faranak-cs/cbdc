@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function Nav() {
   const [isConnected, setIsConnected] = useState("Connect");
 
-  // connect button handler
+  // connectWallet button handler
   const connectWallet = async () => {
     if (typeof window.ethereum !== "undefined") {
       try {
@@ -23,7 +23,7 @@ function Nav() {
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <Link to="/">Main Menu</Link>&nbsp;|&nbsp;
+        <Link to="/">Home</Link>&nbsp;|&nbsp;
         <Link to="/deposit">Deposit</Link>&nbsp;|&nbsp;
         <Link to="/mint">Mint</Link>&nbsp;|&nbsp;
         <Link to="/transfer">Transfer</Link>&nbsp;|&nbsp;

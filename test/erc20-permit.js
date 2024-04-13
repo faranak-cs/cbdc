@@ -9,48 +9,51 @@ async function getPermitSignature(signer, token, spender, value, deadline) {
     31337,
   ]);
 
-  return ethers.Signature.from(
-    await signer.signTypedData(
-      {
-        // EIP712DOMAIN
-        name,
-        version,
-        chainId,
-        verifyingContract: token.target,
-      },
-      {
-        Permit: [
-          {
-            name: "owner",
-            type: "address",
-          },
-          {
-            name: "spender",
-            type: "address",
-          },
-          {
-            name: "value",
-            type: "uint256",
-          },
-          {
-            name: "nonce",
-            type: "uint256",
-          },
-          {
-            name: "deadline",
-            type: "uint256",
-          },
-        ],
-      },
-      {
-        owner: signer.address,
-        spender,
-        value,
-        nonce,
-        deadline,
-      }
-    )
+  // signature
+  const sig = await signer.signTypedData(
+    {
+      name,
+      version,
+      chainId,
+      verifyingContract: token.target,
+    },
+    {
+      Permit: [
+        {
+          name: "owner",
+          type: "address",
+        },
+        {
+          name: "spender",
+          type: "address",
+        },
+        {
+          name: "value",
+          type: "uint256",
+        },
+        {
+          name: "nonce",
+          type: "uint256",
+        },
+        {
+          name: "deadline",
+          type: "uint256",
+        },
+      ],
+    },
+    {
+      owner: signer.address,
+      spender,
+      value,
+      nonce,
+      deadline,
+    }
   );
+
+  console.log(sig);
+
+  // v, r, s values
+  return ethers.Signature.from(sig);
 }
 
 describe("ERC20Permit", function () {
@@ -74,6 +77,8 @@ describe("ERC20Permit", function () {
     await ourToken.mint(signer.address, amount);
 
     const deadline = ethers.MaxUint256;
+
+    console.log(deadline);
 
     const { v, r, s } = await getPermitSignature(
       signer,
