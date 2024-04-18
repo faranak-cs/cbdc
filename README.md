@@ -11,8 +11,87 @@ MetaMask wallet is used to confirm transactions and sign messgages.
 1. We have utilized [EIP-20](https://eips.ethereum.org/EIPS/eip-20) as our token standard. Our CBDC tokens exist as ERC20 tokens.
 2. We have utlized [EIP-712](https://eips.ethereum.org/EIPS/eip-712) as our signature signing standard. 
 3. We have used [EIP-2612](https://eips.ethereum.org/EIPS/eip-2612) as our signature approval standard.
-# How to Run
-1. Install MetaMask wallet extension in the Chrome browser from [here](https://chromewebstore.google.com/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn).
+# Steps to build Artefact
+## Setup
+1. Install [MetaMask](https://chromewebstore.google.com/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn) and [VS Code](https://code.visualstudio.com/).
+2. Clone the repository using the following command:
+```
+git clone https://github.com/faranak-cs/cbdc.git
+```
+3. Open `cbdc` folder in VS Code and enter the following command in VS Code CLI to install Hardhat dependencies:
+```
+npm install
+```
+Use the same command to install React dependencies but first change directory to `cbdc/frontend` by using following command:
+```
+cd frontend
+```
+Now install dependencies.
+```
+npm install
+```
+Go back to parent directory `cbdc` using `cd ..`
+
+4. Compile the smart contracts by using the following command in VS Code CLI:
+```
+npx hardhat compile
+```
+5. Write the following command in a new VS Code CLI instance. This will spin up a local Ethereum blockchain.
+```
+npx hardhat node
+```
+Keep that CLI instance running.
+
+6. Now deploy the smart contracts on local Ethereum blockchain using the following command:
+```
+npx hardhat run .\scripts\deploy.js --network localhost
+```
+7. We need MetaMask wallet to be configured with our local Ethereum blockchain. Open MetaMask. Go to `Setting > Networks > Add a network > Add a network manually`. Now enter the following details and hit `Save`.
+
+- Network Name:
+```
+Hardhat-localhost
+```
+- New RPC URL:
+```
+http://127.0.0.1:8545/
+```
+- Chain ID:
+```
+31337
+```
+- Currency symbol:
+```
+ETH
+```
+8. We need two Chrome browser profiles. One is for **central bank's perspective** and other one for **users' perspective**.
+9. Now add three Ethereum accounts that were generated in step 5. Do this on both Chrome profiles. Open MetaMask. Go to `Select an account > Add account > Import account`. For Simplicity, enter the following details to add accounts and hit `Import`.
+
+- Enter your private key string here:
+```
+0xdf57089febbacf7ba0bc227dafbffa9fc08a93fdc68e1e42411a14efcf23656e
+```
+Name this account as `CB` (Central bank).
+```
+0x59c6995e998f97a5a0044966f0945389dc9e86dae88c7a8412f4603b6b78690d
+```
+Name this account as `P1` (Person 1)
+```
+0x5de4111afa1a4b94908f83103eb1f1706367c2e68ca870fc3fb9a804cdab365a
+```
+Name this account as `P2` (Person 2)
+
+10. All installations and configurations are done.
+## Run
+0. Local Ethereum blockchain should be running and smart contracts should be deployed.
+1. Change the directory to `cbdc/frontend`. Now Enter the following command:
+```
+npm run dev
+```
+2. Application should start running on `http://localhost:5173/`
+## Deposit
+## Mint
+## Check balance
 # Software Package Diagram
 ![package](https://github.com/faranak-cs/cbdc/assets/73027299/aeaae73e-0a67-4067-8429-04bc57739222)
 # Use Case Diagram
