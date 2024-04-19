@@ -93,9 +93,23 @@ Name this account as `P2` (Person 2)
 npm run dev
 ```
 2. Application should start running on `http://localhost:5173/`
+3. Copy the url and paste it on other Chrome profile.
+4. Application should be running on both Chrome profiles.
 ## Deposit
+0. Go to Chrome profile (central bank) and connect MetaMask.
+1. Go to Deposit page. Enter amount and wallet address and hit `Deposit`.
+2. MetaMask `Signature Request` will pop up. Sign it.
+3. After successful transaction, a 65-bytes signature will be appeared. Copy it.
 ## Mint
+0. Go to Chrome profile (user) and connect MetaMask.
+1. Got to Mint page and paste the signature.
+2. Enter the same wallet address and amount and hit `Mint`.
+3. MetaMask transactions will pop up. Confirm them.
+4. After successful transactions, tokens will be minted. 
 ## Check balance
+0. Copy the same wallet address.
+1. Go to Home page. Paste the address and hit `Check`.
+2. Available tokens will be displayed.
 # Artefact Package Diagram
 ![package](https://github.com/faranak-cs/cbdc/assets/73027299/aeaae73e-0a67-4067-8429-04bc57739222)
 # Use Case Diagram
