@@ -69,23 +69,28 @@ http://127.0.0.1:8545/
 ETH
 ```
 8. We need two Chrome browser profiles. One is for **central bank's perspective** and other one for **users' perspective**.
-9. Now add three Ethereum accounts that were generated in step 5. Do this on both Chrome profiles. Open MetaMask. Go to `Select an account > Add account > Import account`. For Simplicity, enter the following details to add accounts and hit `Import`.
+9. Now add three Ethereum accounts that were generated in step 5. Do this on both Chrome profiles. Open MetaMask. Go to `Select an account > Add account > Import account`. For Simplicity, enter the following details to add accounts and hit `Import`. 
 
 - Enter your private key string here:
 ```
 0xdf57089febbacf7ba0bc227dafbffa9fc08a93fdc68e1e42411a14efcf23656e
 ```
 Name this account as `CB` (Central bank).
+<hr>
+
 ```
 0x59c6995e998f97a5a0044966f0945389dc9e86dae88c7a8412f4603b6b78690d
 ```
 Name this account as `P1` (Person 1)
+<hr>
+
 ```
 0x5de4111afa1a4b94908f83103eb1f1706367c2e68ca870fc3fb9a804cdab365a
 ```
 Name this account as `P2` (Person 2)
-
+<hr>
 10. All installations and configurations are done.
+
 ## Run
 0. Local Ethereum blockchain should be running and smart contracts should be deployed.
 1. Change the directory to `cbdc/frontend`. Now Enter the following command:
@@ -102,7 +107,7 @@ npm run dev
 3. After successful transaction, a 65-bytes signature will be appeared. Copy it.
 ## Mint
 0. Go to Chrome profile (user) and connect MetaMask.
-1. Got to Mint page and paste the signature.
+1. Go to Mint page and paste the signature.
 2. Enter the same wallet address and amount and hit `Mint`.
 3. MetaMask transactions will pop up. Confirm them.
 4. After successful transactions, tokens will be minted. 
