@@ -1,9 +1,9 @@
 # A Novel Secure and Inclusive Central Bank Digital Currency (CBDC)
 This artefact is built as part of my thesis on central bank digital currencies (CBDCs). The artefact is a decentralized app (dApp) built using:
-- Hardhat (Ethereum development environment)
-- OpenZeppelin (smart contracts)
-- Ethers.js (web3 library)
-- React.js (frontend library)
+- Hardhat (Ethereum development environment) `v2.20.1`
+- OpenZeppelin (smart contracts) `v5.0.1`
+- Ethers.js (web3 library) `v6.11.1`
+- React.js (frontend library) `v18.2.0`
 # Flow of Artefact
 1. User deposits fiat currency
 2. Central bank generates a digital signature.
