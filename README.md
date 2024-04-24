@@ -119,6 +119,8 @@ npm run dev
 ![package](https://github.com/faranak-cs/cbdc/assets/73027299/aeaae73e-0a67-4067-8429-04bc57739222)
 # Use Case Diagram
 ![usecase](https://github.com/faranak-cs/cbdc/assets/73027299/cfc27d22-b1f3-498d-836f-436db2fc0277)
+# Artefact Demo
+https://github.com/faranak-cs/cbdc/assets/73027299/b2d56b29-cb38-4bcb-8e70-ec48a25baca9
 # Current status of CBDCs worldwide 
 ![cbdc status](https://github.com/faranak-cs/cbdc/assets/73027299/74c1c22e-fcde-4077-968e-70e231e248c1)
 Source: https://cbdctracker.org/
