@@ -116,9 +116,10 @@ npm run dev
 1. Go to Home page. Paste the address and hit `Check`.
 2. Available tokens will be displayed.
 # Artefact Package Diagram
-![package](https://github.com/faranak-cs/cbdc/assets/73027299/aeaae73e-0a67-4067-8429-04bc57739222)
+![package](https://github.com/faranak-cs/cbdc/assets/73027299/b71a69b2-7bfc-42f6-9833-3aa4c664ee6a)
 # Use Case Diagram
-![usecase](https://github.com/faranak-cs/cbdc/assets/73027299/cfc27d22-b1f3-498d-836f-436db2fc0277)
+![usecase](https://github.com/faranak-cs/cbdc/assets/73027299/49664f6a-4c1a-406d-8c1f-0e51c6814bd1)
+
 # Artefact Demo
 https://github.com/faranak-cs/cbdc/assets/73027299/b2d56b29-cb38-4bcb-8e70-ec48a25baca9
 # Current status of CBDCs worldwide 
